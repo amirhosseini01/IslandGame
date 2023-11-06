@@ -17,12 +17,14 @@ namespace RPG.Characters
         private void Update()
         {
             MovePlayer();
+
             Rotate();
         }
 
         private void MovePlayer()
         {
             Vector3 offset = MovementVector * Time.deltaTime * Agent.speed;
+
             Agent.Move(offset);
         }
 
@@ -37,6 +39,7 @@ namespace RPG.Characters
         private void Rotate()
         {
             if(MovementVector == Vector3.zero) return;
+
             Quaternion startRotation = transform.rotation;
             Quaternion endRotation = Quaternion.LookRotation(MovementVector);
 
