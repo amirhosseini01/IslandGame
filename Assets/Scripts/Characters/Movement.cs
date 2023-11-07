@@ -5,7 +5,7 @@ using UnityEngine.AI;
 namespace RPG.Characters
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Movment : MonoBehaviour
+    public class Movement : MonoBehaviour
     {
         private NavMeshAgent Agent;
         private Vector3 MovementVector;
@@ -48,6 +48,11 @@ namespace RPG.Characters
                 endRotation,
                 Time.deltaTime * Agent.angularSpeed
             );
+        }
+
+        public void MoveAgentByDestination(Vector3 destination)
+        {
+            Agent.SetDestination(destination);
         }
     }
 }
