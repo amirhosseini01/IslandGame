@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace RPG.Characters
 {
-    public class AIReturnState : AiBaseState
+    public class AiChaseState : AiBaseState
     {
         public override void EnterState(EnemyController enemy)
         {
-            enemy.MovementCmp.MoveAgentByDestination(
-                enemy.OriginalPosition
-            );
+            throw new System.NotImplementedException();
         }
 
         public override void UpdateState(EnemyController enemy)
         {
-            if(enemy.DistanceFromPlayer < enemy.ChaseRange)
+            if(enemy.DistanceFromPlayer > enemy.ChaseRange)
             {
-                enemy.SwitchStates(enemy.ChaseState);
+                enemy.SwitchStates(enemy.ReturnState);
                 return;
             }
+
+            enemy.MovementCmp.MoveAgentByDestination(enemy.Player.transform.position);
         }
     }
 }
