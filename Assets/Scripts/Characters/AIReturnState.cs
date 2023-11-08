@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace RPG.Characters
+namespace Assets.Scripts.Characters
 {
-    public class AIReturnState : AiBaseState
+	public class AIReturnState : AiBaseState
     {
         public override void EnterState(EnemyController enemy)
         {

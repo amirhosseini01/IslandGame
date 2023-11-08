@@ -57,5 +57,9 @@
         "Temp/": true
     },
     "dotnet.defaultSolution": "Island.sln",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "cSpell.words": [
+        "Behaviour",
+        "Lerp"
+    ]
 }

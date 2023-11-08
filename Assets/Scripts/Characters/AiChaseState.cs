@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System.Diagnostics;
 
-namespace RPG.Characters
+namespace Assets.Scripts.Characters
 {
-    public class AiChaseState : AiBaseState
+	public class AiChaseState : AiBaseState
     {
         public override void EnterState(EnemyController enemy)
         {
-            throw new System.NotImplementedException();
+            Debug.WriteLine("--> I'm here: AiChaseState:EnterState");
         }
 
         public override void UpdateState(EnemyController enemy)

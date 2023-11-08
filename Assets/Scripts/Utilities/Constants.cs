@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPG.Utilities
+namespace Assets.Scripts.Utilities
 {
     public class Constants : MonoBehaviour
     {

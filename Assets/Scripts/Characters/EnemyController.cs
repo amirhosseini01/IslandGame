@@ -1,8 +1,8 @@
 using System;
-using RPG.Utilities;
+using Assets.Scripts.Utilities;
 using UnityEngine;
 
-namespace RPG.Characters
+namespace Assets.Scripts.Characters
 {
     public class EnemyController : MonoBehaviour
     {
@@ -58,10 +58,13 @@ namespace RPG.Characters
 
         private void CalculateDistanceFromPlayer()
         {
-            if (Player == null) return;
+            if (Player == null)
+			{
+				return;
+			}
 
-            Vector3 enemyPosition = transform.position;
-            Vector3 playerPosition = Player.transform.position;
+			var enemyPosition = transform.position;
+            var playerPosition = Player.transform.position;
 
             DistanceFromPlayer = Vector3.Distance(enemyPosition, playerPosition);
         }
