@@ -53,5 +53,8 @@ namespace Assets.Scripts.Characters
 
         public void MoveAgentByDestination(Vector3 destination) =>
             Agent.SetDestination(destination);
+
+        public void StopMovingAgent() =>
+            Agent.ResetPath();
     }
 }

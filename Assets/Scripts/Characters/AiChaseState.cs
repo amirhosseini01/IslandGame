@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using UnityEngine;
 
 namespace Assets.Scripts.Characters
 {
@@ -6,7 +6,7 @@ namespace Assets.Scripts.Characters
     {
         public override void EnterState(EnemyController enemy)
         {
-            Debug.WriteLine("--> I'm here: AiChaseState:EnterState");
+            Debug.Log("--> I'm here: AiChaseState:EnterState");
         }
 
         public override void UpdateState(EnemyController enemy)
@@ -14,6 +14,13 @@ namespace Assets.Scripts.Characters
             if(enemy.DistanceFromPlayer > enemy.ChaseRange)
             {
                 enemy.SwitchStates(enemy.ReturnState);
+                return;
+            }
+
+            Debug.Log($"{enemy.AttackRange}");
+            if(enemy.DistanceFromPlayer < enemy.AttackRange)
+            {
+                enemy.SwitchStates(enemy.AttackState);
                 return;
             }
 

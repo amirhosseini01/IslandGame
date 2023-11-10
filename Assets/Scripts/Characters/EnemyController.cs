@@ -7,7 +7,7 @@ namespace Assets.Scripts.Characters
     public class EnemyController : MonoBehaviour
     {
         public float ChaseRange = 2.5f;
-        public float AttackRange = 0.75f;
+        public float AttackRange = 1.16f;
         
         [NonSerialized]
         public GameObject Player;
@@ -18,16 +18,19 @@ namespace Assets.Scripts.Characters
         [NonSerialized]
         public float DistanceFromPlayer;
 
+        private AiBaseState CurrentState;
+        
         [NonSerialized]
         public Vector3 OriginalPosition;
 
-        private AiBaseState CurrentState;
         [NonSerialized]
-        
         public AIReturnState ReturnState = new AIReturnState();
         
         [NonSerialized]
         public AiChaseState ChaseState = new AiChaseState();
+
+        [NonSerialized]
+        public AiAttackState AttackState = new AiAttackState();
 
         private void Awake()
         {

@@ -1,0 +1,22 @@
+using System.Diagnostics;
+
+namespace Assets.Scripts.Characters
+{
+	public class AiAttackState : AiBaseState
+    {
+        public override void EnterState(EnemyController enemy)
+        {
+            enemy.MovementCmp.StopMovingAgent();
+        }
+        public override void UpdateState(EnemyController enemy)
+        {
+            if (enemy.DistanceFromPlayer > enemy.AttackRange)
+            {
+                enemy.SwitchStates(enemy.ChaseState);
+                return;
+            }
+
+            Debug.Print("--> Attacking player");
+        }
+    }
+}
