@@ -24,7 +24,7 @@ namespace Assets.Scripts.Characters
                 return;
             }
 
-            enemy.MovementCmp.MoveAgentByDestination(enemy.Player.transform.position);
+            enemy.Movement.MoveAgentByDestination(enemy.Player.transform.position);
         }
     }
 }

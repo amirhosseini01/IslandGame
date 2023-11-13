@@ -6,7 +6,7 @@ namespace Assets.Scripts.Characters
     {
         public override void EnterState(EnemyController enemy)
         {
-            enemy.MovementCmp.StopMovingAgent();
+            enemy.Movement.StopMovingAgent();
         }
         public override void UpdateState(EnemyController enemy)
         {

@@ -13,7 +13,10 @@ namespace Assets.Scripts.Characters
         public GameObject Player;
 
         [NonSerialized]
-        public Movement MovementCmp;
+        public Movement Movement;
+        
+        [NonSerialized]
+        public Patrol Patrol;
 
         [NonSerialized]
         public float DistanceFromPlayer;
@@ -36,7 +39,8 @@ namespace Assets.Scripts.Characters
         {
             CurrentState = ChaseState;
             Player = GameObject.FindWithTag(Constants.PlayerTag);
-            MovementCmp = GetComponent<Movement>();
+            Movement = GetComponent<Movement>();
+            Patrol = GetComponent<Patrol>();
 
             OriginalPosition = transform.position;
         }
