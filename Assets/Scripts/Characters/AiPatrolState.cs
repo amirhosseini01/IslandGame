@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Characters
 {
-	public class AiPatrolState : MonoBehaviour
+	public class AiPatrolState : AiBaseState
     {
         public override void EnterState(EnemyController enemy)
         {

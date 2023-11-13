@@ -35,6 +35,9 @@ namespace Assets.Scripts.Characters
         [NonSerialized]
         public AiAttackState AttackState = new AiAttackState();
 
+        [NonSerialized]
+        public AiPatrolState PatrolState = new AiPatrolState();
+
         private void Awake()
         {
             CurrentState = ChaseState;
