@@ -41,6 +41,11 @@ namespace Assets.Scripts.Characters
         public void StopMovingAgent() =>
             _agent.ResetPath();
 
+        public void MoveAgentByOffset(Vector3 offset)
+        {
+            _agent.Move(offset);
+        }
+
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();

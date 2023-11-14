@@ -14,6 +14,14 @@ namespace Assets.Scripts.Characters
                 enemy.SwitchStates(enemy.ChaseState);
                 return;
             }
+
+            enemy.Patrol.CalculateNextPosition();
+
+            var currentPosition = enemy.transform.position;
+            var newPosition = enemy.Patrol.GetNextPosition();
+            var offset = newPosition - currentPosition;
+
+            enemy.Movement.MoveAgentByOffset(offset);
         }
     }
 
