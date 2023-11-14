@@ -51,6 +51,26 @@ namespace Assets.Scripts.Characters
             );
         }
 
+        public bool ReachedDestination()
+        {
+            if (Agent.pathPending)
+            {
+                return false;
+            }
+
+            if (Agent.remainingDistance > Agent.stoppingDistance)
+            {
+                return false;
+            }
+
+            if (Agent.hasPath || Agent.velocity.sqrMagnitude != 0f)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public void MoveAgentByDestination(Vector3 destination) =>
             Agent.SetDestination(destination);
 

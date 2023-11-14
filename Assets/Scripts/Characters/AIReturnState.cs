@@ -29,6 +29,12 @@ namespace Assets.Scripts.Characters
                 enemy.SwitchStates(enemy.ChaseState);
                 return;
             }
+
+            if(enemy.Movement.ReachedDestination() && enemy.Patrol is not null)
+            {
+                enemy.SwitchStates(enemy.PatrolState);
+                return;
+            }
         }
     }
 }
