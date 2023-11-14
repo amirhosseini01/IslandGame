@@ -11,7 +11,7 @@ namespace Assets.Scripts.Characters
             if(enemy.Patrol is null)
             {
                 enemy.Movement.MoveAgentByDestination(
-                    enemy.OriginalPosition
+                    enemy._originalPosition
                 );
             }
             else

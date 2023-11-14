@@ -7,11 +7,43 @@ namespace Assets.Scripts.Characters
     [RequireComponent(typeof(NavMeshAgent))]
     public class Movement : MonoBehaviour
     {
-        private NavMeshAgent Agent;
-        private Vector3 MovementVector;
+        private NavMeshAgent _agent;
+        private Vector3 _movementVector;
+
+        public void HandleMove(InputAction.CallbackContext context)
+        {
+            var input = context.ReadValue<Vector2>();
+            _movementVector = new(input.x, 0, input.y);
+        }
+        public bool ReachedDestination()
+        {
+            if (_agent.pathPending)
+            {
+                return false;
+            }
+
+            if (_agent.remainingDistance > _agent.stoppingDistance)
+            {
+                return false;
+            }
+
+            if (_agent.hasPath || _agent.velocity.sqrMagnitude != 0f)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void MoveAgentByDestination(Vector3 destination) =>
+            _agent.SetDestination(destination);
+
+        public void StopMovingAgent() =>
+            _agent.ResetPath();
+
         private void Awake()
         {
-            Agent = GetComponent<NavMeshAgent>();
+            _agent = GetComponent<NavMeshAgent>();
         }
 
         private void Update()
@@ -23,58 +55,26 @@ namespace Assets.Scripts.Characters
 
         private void MovePlayer()
         {
-            var offset = Agent.speed * Time.deltaTime * MovementVector;
+            var offset = _agent.speed * Time.deltaTime * _movementVector;
 
-            Agent.Move(offset);
-        }
-
-        public void HandleMove(InputAction.CallbackContext context)
-        {
-            var input = context.ReadValue<Vector2>();
-            MovementVector = new(input.x, 0, input.y);
+            _agent.Move(offset);
         }
 
         private void Rotate()
         {
-            if (MovementVector == Vector3.zero)
+            if (_movementVector == Vector3.zero)
             {
                 return;
             }
 
             var startRotation = transform.rotation;
-            var endRotation = Quaternion.LookRotation(MovementVector);
+            var endRotation = Quaternion.LookRotation(_movementVector);
 
             transform.rotation = Quaternion.Lerp(
                 startRotation,
                 endRotation,
-                Time.deltaTime * Agent.angularSpeed
+                Time.deltaTime * _agent.angularSpeed
             );
         }
-
-        public bool ReachedDestination()
-        {
-            if (Agent.pathPending)
-            {
-                return false;
-            }
-
-            if (Agent.remainingDistance > Agent.stoppingDistance)
-            {
-                return false;
-            }
-
-            if (Agent.hasPath || Agent.velocity.sqrMagnitude != 0f)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public void MoveAgentByDestination(Vector3 destination) =>
-            Agent.SetDestination(destination);
-
-        public void StopMovingAgent() =>
-            Agent.ResetPath();
     }
 }

@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace Assets.Scripts.Characters
 {
 	public class AiAttackState : AiBaseState
@@ -15,8 +13,6 @@ namespace Assets.Scripts.Characters
                 enemy.SwitchStates(enemy.ChaseState);
                 return;
             }
-
-            Debug.Print("--> Attacking player");
         }
     }
 }

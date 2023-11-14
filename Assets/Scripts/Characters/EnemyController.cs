@@ -21,10 +21,8 @@ namespace Assets.Scripts.Characters
         [NonSerialized]
         public float DistanceFromPlayer;
 
-        private AiBaseState CurrentState;
-        
         [NonSerialized]
-        public Vector3 OriginalPosition;
+        public Vector3 _originalPosition;
 
         [NonSerialized]
         public AIReturnState ReturnState = new AIReturnState();
@@ -38,32 +36,35 @@ namespace Assets.Scripts.Characters
         [NonSerialized]
         public AiPatrolState PatrolState = new AiPatrolState();
 
+        [NonSerialized]
+        private AiBaseState _currentState;
+
+        public void SwitchStates(AiBaseState newState)
+        {
+            _currentState = newState;
+            _currentState.EnterState(this);
+        }
+
         private void Awake()
         {
-            CurrentState = ChaseState;
+            _currentState = ChaseState;
             Player = GameObject.FindWithTag(Constants.PlayerTag);
             Movement = GetComponent<Movement>();
             Patrol = GetComponent<Patrol>();
 
-            OriginalPosition = transform.position;
-        }
-
-        public void SwitchStates(AiBaseState newState)
-        {
-            CurrentState = newState;
-            CurrentState.EnterState(this);
+            _originalPosition = transform.position;
         }
 
         private void Start()
         {
-            CurrentState.EnterState(this);
+            _currentState.EnterState(this);
         }
 
         private void Update()
         {
             CalculateDistanceFromPlayer();
 
-            CurrentState.UpdateState(this);
+            _currentState.UpdateState(this);
         }
 
         private void CalculateDistanceFromPlayer()
