@@ -14,6 +14,11 @@ namespace Assets.Scripts.Characters
         private float _splinePosition = 0f;
         private float _splineLength = 0f;
         private float _lengthWaked = 0f;
+        [SerializeField] private float _walkDuration = 3f;
+        [SerializeField] private float _pauseDuration = 2f;
+        private float _walkTime = 0f;
+        private float _pauseTime = 0f;
+        private bool _isWalking = true;
 
         public Vector3 GetNextPosition()
         {
@@ -22,6 +27,27 @@ namespace Assets.Scripts.Characters
 
         public void CalculateNextPosition()
         {
+            _walkTime += Time.deltaTime;
+
+            if(_walkTime > _walkDuration)
+            {
+                _isWalking = false;
+            }
+
+            if(!_isWalking)
+            {
+                _pauseTime += Time.deltaTime;
+
+                if(_pauseTime < _pauseDuration)
+                {
+                    return;
+                }
+
+                _pauseTime = 0f;
+                _walkTime = 0f;
+                _isWalking = true;
+            }
+
             _lengthWaked += Time.deltaTime * Agent.speed;
 
             if (_lengthWaked > _splineLength)
