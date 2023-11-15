@@ -6,7 +6,7 @@ namespace Assets.Scripts.Characters
 {
     public class EnemyController : MonoBehaviour
     {
-        public float ChaseRange = 2.5f;
+        public float ChaseRange = 3.5f;
         public float AttackRange = 1.16f;
         
         [NonSerialized]
