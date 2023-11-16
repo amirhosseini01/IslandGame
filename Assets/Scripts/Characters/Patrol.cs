@@ -29,23 +29,21 @@ namespace Assets.Scripts.Characters
         {
             _walkTime += Time.deltaTime;
 
-            if(_walkTime > _walkDuration)
+            if (_walkTime > _walkDuration)
             {
                 _isWalking = false;
             }
 
-            if(!_isWalking)
+            if (!_isWalking)
             {
                 _pauseTime += Time.deltaTime;
 
-                if(_pauseTime < _pauseDuration)
+                if (_pauseTime < _pauseDuration)
                 {
                     return;
                 }
 
-                _pauseTime = 0f;
-                _walkTime = 0f;
-                _isWalking = true;
+                ResetTimers();
             }
 
             _lengthWaked += Time.deltaTime * Agent.speed;
@@ -56,6 +54,13 @@ namespace Assets.Scripts.Characters
             }
 
             _splinePosition = Mathf.Clamp01(_lengthWaked / _splineLength);
+        }
+
+        public void ResetTimers()
+        {
+            _pauseTime = 0f;
+            _walkTime = 0f;
+            _isWalking = true;
         }
 
         private void Awake()

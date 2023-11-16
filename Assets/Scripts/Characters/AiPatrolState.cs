@@ -4,7 +4,7 @@ namespace Assets.Scripts.Characters
     {
         public override void EnterState(EnemyController enemy)
         {
-
+            enemy.Patrol.ResetTimers();
         }
 
         public override void UpdateState(EnemyController enemy)
