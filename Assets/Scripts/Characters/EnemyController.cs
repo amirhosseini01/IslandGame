@@ -36,8 +36,11 @@ namespace Assets.Scripts.Characters
         [NonSerialized]
         public AiPatrolState PatrolState = new AiPatrolState();
 
-        [NonSerialized]
+        public CharacterStatsScriptableObj Stats;
+
         private AiBaseState _currentState;
+        private Health _healthComponent;
+        private Combat _combatComponent;
 
         public void SwitchStates(AiBaseState newState)
         {
@@ -51,6 +54,8 @@ namespace Assets.Scripts.Characters
             Player = GameObject.FindWithTag(Constants.PlayerTag);
             Movement = GetComponent<Movement>();
             Patrol = GetComponent<Patrol>();
+            _combatComponent = GetComponent<Combat>();
+            _healthComponent = GetComponent<Health>();
 
             _originalPosition = transform.position;
         }
@@ -58,6 +63,9 @@ namespace Assets.Scripts.Characters
         private void Start()
         {
             _currentState.EnterState(this);
+
+            _healthComponent.HealthPoints = Stats.Health;
+            _combatComponent.Damage = Stats.Damage;
         }
 
         private void Update()

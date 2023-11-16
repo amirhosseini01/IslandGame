@@ -60,6 +60,7 @@
     "git.ignoreLimitWarning": true,
     "cSpell.words": [
         "Behaviour",
-        "Lerp"
+        "Lerp",
+        "Scriptable"
     ]
 }
