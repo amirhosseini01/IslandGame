@@ -46,6 +46,11 @@ namespace Assets.Scripts.Characters
             _agent.Move(offset);
         }
 
+        public void UpdateAgentSpeed(float newSpeed)
+        {
+            _agent.speed = newSpeed;
+        }
+
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();

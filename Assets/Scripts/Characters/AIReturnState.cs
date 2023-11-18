@@ -8,6 +8,8 @@ namespace Assets.Scripts.Characters
         private Vector3 _targetPosition;
         public override void EnterState(EnemyController enemy)
         {
+            enemy.Movement.UpdateAgentSpeed(enemy.Stats.WalkSpeed);
+
             if(enemy.Patrol is null)
             {
                 enemy.Movement.MoveAgentByDestination(
