@@ -22,7 +22,7 @@ namespace Assets.Scripts.Characters
         public float DistanceFromPlayer;
 
         [NonSerialized]
-        public Vector3 _originalPosition;
+        public Vector3 OriginalPosition;
 
         [NonSerialized]
         public AIReturnState ReturnState = new AIReturnState();
@@ -57,7 +57,7 @@ namespace Assets.Scripts.Characters
             _combatComponent = GetComponent<Combat>();
             _healthComponent = GetComponent<Health>();
 
-            _originalPosition = transform.position;
+            OriginalPosition = transform.position;
         }
 
         private void Start()

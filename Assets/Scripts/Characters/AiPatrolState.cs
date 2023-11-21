@@ -22,6 +22,12 @@ namespace Assets.Scripts.Characters
             var offset = newPosition - currentPosition;
 
             enemy.Movement.MoveAgentByOffset(offset);
+
+            var fartherOutPosition = enemy.Patrol.GetFartherOutPosition();
+            var newForwardVector = fartherOutPosition - currentPosition;
+            newForwardVector.y = 0;
+
+            enemy.Movement.Rotate(newForwardVector);
         }
     }
 

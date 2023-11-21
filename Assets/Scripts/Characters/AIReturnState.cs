@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace Assets.Scripts.Characters
 {
-	public class AIReturnState : AiBaseState
+    public class AIReturnState : AiBaseState
     {
         private Vector3 _targetPosition;
         public override void EnterState(EnemyController enemy)
         {
             enemy.Movement.UpdateAgentSpeed(enemy.Stats.WalkSpeed);
 
-            if(enemy.Patrol is null)
+            if (enemy.Patrol is null)
             {
                 enemy.Movement.MoveAgentByDestination(
-                    enemy._originalPosition
+                    enemy.OriginalPosition
                 );
             }
             else
@@ -26,16 +26,38 @@ namespace Assets.Scripts.Characters
 
         public override void UpdateState(EnemyController enemy)
         {
-            if(enemy.DistanceFromPlayer < enemy.ChaseRange)
+            if (enemy.DistanceFromPlayer < enemy.ChaseRange)
             {
                 enemy.SwitchStates(enemy.ChaseState);
                 return;
             }
 
-            if(enemy.Movement.ReachedDestination() && enemy.Patrol is not null)
+            if (enemy.Movement.ReachedDestination())
             {
-                enemy.SwitchStates(enemy.PatrolState);
-                return;
+                if (enemy.Patrol is not null)
+                {
+                    enemy.SwitchStates(enemy.PatrolState);
+                    return;
+                }
+            }
+            else
+            {
+                Vector3 newForwardVector;
+                if (enemy.Patrol is null)
+                {
+                    newForwardVector = enemy.OriginalPosition -
+                        enemy.transform.position;
+                        newForwardVector.y = 0;
+                    
+                    enemy.Movement.Rotate(newForwardVector);
+                }
+                else
+                {
+                    newForwardVector = _targetPosition - enemy.transform.position;
+                    newForwardVector.y = 0;
+                    
+                    enemy.Movement.Rotate(newForwardVector);
+                }
             }
         }
     }

@@ -22,6 +22,9 @@ namespace Assets.Scripts.Characters
             }
 
             enemy.Movement.MoveAgentByDestination(enemy.Player.transform.position);
+
+            var playerDirection = enemy.Player.transform.position - enemy.transform.position;
+            enemy.Movement.Rotate(playerDirection);
         }
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using Assets.Scripts.Utilities;
 
 namespace Assets.Scripts.Characters
 {
@@ -60,7 +61,10 @@ namespace Assets.Scripts.Characters
         {
             MovePlayer();
 
-            Rotate();
+            if(CompareTag(Constants.PlayerTag))
+            {
+                Rotate(_movementVector);
+            }
         }
 
         private void MovePlayer()
@@ -70,15 +74,15 @@ namespace Assets.Scripts.Characters
             _agent.Move(offset);
         }
 
-        private void Rotate()
+        public void Rotate(Vector3 newForwardVector)
         {
-            if (_movementVector == Vector3.zero)
+            if (newForwardVector == Vector3.zero)
             {
                 return;
             }
 
             var startRotation = transform.rotation;
-            var endRotation = Quaternion.LookRotation(_movementVector);
+            var endRotation = Quaternion.LookRotation(newForwardVector);
 
             transform.rotation = Quaternion.Lerp(
                 startRotation,
