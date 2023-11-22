@@ -2,12 +2,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using Assets.Scripts.Utilities;
+using System;
 
 namespace Assets.Scripts.Characters
 {
     [RequireComponent(typeof(NavMeshAgent))]
     public class Movement : MonoBehaviour
     {
+        [NonSerialized]
+        public Vector3 OriginalForwardVector;
         private NavMeshAgent _agent;
         private Vector3 _movementVector;
 
@@ -52,9 +55,16 @@ namespace Assets.Scripts.Characters
             _agent.speed = newSpeed;
         }
 
+        private void Start()
+        {
+            _agent.updateRotation = false;
+        }
+
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
+
+            OriginalForwardVector = transform.forward;
         }
 
         private void Update()

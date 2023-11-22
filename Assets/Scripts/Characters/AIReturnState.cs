@@ -39,6 +39,10 @@ namespace Assets.Scripts.Characters
                     enemy.SwitchStates(enemy.PatrolState);
                     return;
                 }
+                else
+                {
+                    enemy.Movement.Rotate(enemy.Movement.OriginalForwardVector);
+                }
             }
             else
             {
