@@ -11,11 +11,25 @@ namespace Assets.Scripts.Characters
     {
         [NonSerialized]
         public Vector3 OriginalForwardVector;
+
+        [NonSerialized]
+        public bool IsMoving = false;
+
         private NavMeshAgent _agent;
         private Vector3 _movementVector;
+        private Animator _animatorComponent;
 
         public void HandleMove(InputAction.CallbackContext context)
         {
+            if(context.performed)
+            {
+                IsMoving = true;
+            }
+            if(context.canceled)
+            {
+                IsMoving = false;
+            }
+
             var input = context.ReadValue<Vector2>();
             _movementVector = new(input.x, 0, input.y);
         }
@@ -54,36 +68,7 @@ namespace Assets.Scripts.Characters
         {
             _agent.speed = newSpeed;
         }
-
-        private void Start()
-        {
-            _agent.updateRotation = false;
-        }
-
-        private void Awake()
-        {
-            _agent = GetComponent<NavMeshAgent>();
-
-            OriginalForwardVector = transform.forward;
-        }
-
-        private void Update()
-        {
-            MovePlayer();
-
-            if(CompareTag(Constants.PlayerTag))
-            {
-                Rotate(_movementVector);
-            }
-        }
-
-        private void MovePlayer()
-        {
-            var offset = _agent.speed * Time.deltaTime * _movementVector;
-
-            _agent.Move(offset);
-        }
-
+        
         public void Rotate(Vector3 newForwardVector)
         {
             if (newForwardVector == Vector3.zero)
@@ -99,6 +84,53 @@ namespace Assets.Scripts.Characters
                 endRotation,
                 Time.deltaTime * _agent.angularSpeed
             );
+        }
+
+        private void Start()
+        {
+            _agent.updateRotation = false;
+        }
+
+        private void Awake()
+        {
+            _agent = GetComponent<NavMeshAgent>();
+            _animatorComponent = GetComponentInChildren<Animator>();
+            print(_animatorComponent is null);
+
+            OriginalForwardVector = transform.forward;
+        }
+
+        private void Update()
+        {
+            MovePlayer();
+            MovementAnimator();
+            
+            if(CompareTag(Constants.PlayerTag))
+            {
+                Rotate(_movementVector);
+            }
+        }
+
+        private void MovePlayer()
+        {
+            var offset = _agent.speed * Time.deltaTime * _movementVector;
+
+            _agent.Move(offset);
+        }
+
+        private void MovementAnimator()
+        {
+            float speed;
+            if(IsMoving)
+            {
+                speed = 1;
+            }
+            else
+            {
+                speed = 0;
+            }
+
+            _animatorComponent.SetFloat("Speed", speed);
         }
     }
 }
