@@ -1,3 +1,4 @@
+using Assets.Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +21,7 @@ namespace Assets.Scripts.Quests
 
             }
 
-            AnimatorComponent.SetBool("IsShaking", false);
+            AnimatorComponent.SetBool(Constants.IsShakingAnimatorParam, false);
 
             _hasBeenOpened = true;
         }

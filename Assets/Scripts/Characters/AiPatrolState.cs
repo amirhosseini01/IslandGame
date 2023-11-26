@@ -1,3 +1,6 @@
+
+using UnityEngine;
+
 namespace Assets.Scripts.Characters
 {
 	public class AiPatrolState : AiBaseState
@@ -15,6 +18,8 @@ namespace Assets.Scripts.Characters
                 return;
             }
 
+            Vector3 oldPosition = enemy.Patrol.GetNextPosition();
+
             enemy.Patrol.CalculateNextPosition();
 
             var currentPosition = enemy.transform.position;
@@ -28,6 +33,11 @@ namespace Assets.Scripts.Characters
             newForwardVector.y = 0;
 
             enemy.Movement.Rotate(newForwardVector);
+
+            if(oldPosition == newPosition)
+            {
+                enemy.Movement.IsMoving = false;
+            }
         }
     }
 

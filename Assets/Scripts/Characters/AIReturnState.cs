@@ -41,6 +41,7 @@ namespace Assets.Scripts.Characters
                 }
                 else
                 {
+                    enemy.Movement.IsMoving = false;
                     enemy.Movement.Rotate(enemy.Movement.OriginalForwardVector);
                 }
             }

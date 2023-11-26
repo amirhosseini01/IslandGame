@@ -21,11 +21,11 @@ namespace Assets.Scripts.Characters
 
         public void HandleMove(InputAction.CallbackContext context)
         {
-            if(context.performed)
+            if (context.performed)
             {
                 IsMoving = true;
             }
-            if(context.canceled)
+            if (context.canceled)
             {
                 IsMoving = false;
             }
@@ -53,8 +53,11 @@ namespace Assets.Scripts.Characters
             return true;
         }
 
-        public void MoveAgentByDestination(Vector3 destination) =>
+        public void MoveAgentByDestination(Vector3 destination)
+        {
             _agent.SetDestination(destination);
+            IsMoving = true;
+        }
 
         public void StopMovingAgent() =>
             _agent.ResetPath();
@@ -62,13 +65,14 @@ namespace Assets.Scripts.Characters
         public void MoveAgentByOffset(Vector3 offset)
         {
             _agent.Move(offset);
+            IsMoving = true;
         }
 
         public void UpdateAgentSpeed(float newSpeed)
         {
             _agent.speed = newSpeed;
         }
-        
+
         public void Rotate(Vector3 newForwardVector)
         {
             if (newForwardVector == Vector3.zero)
@@ -104,8 +108,8 @@ namespace Assets.Scripts.Characters
         {
             MovePlayer();
             MovementAnimator();
-            
-            if(CompareTag(Constants.PlayerTag))
+
+            if (CompareTag(Constants.PlayerTag))
             {
                 Rotate(_movementVector);
             }
@@ -120,17 +124,20 @@ namespace Assets.Scripts.Characters
 
         private void MovementAnimator()
         {
-            float speed;
-            if(IsMoving)
+            var speed = _animatorComponent.GetFloat(Constants.SpeedAnimatorParam);
+            var smoothening = Time.deltaTime * _agent.acceleration;
+            if (IsMoving)
             {
-                speed = 1;
+                speed += smoothening;
             }
             else
             {
-                speed = 0;
+                speed -= smoothening;
             }
 
-            _animatorComponent.SetFloat("Speed", speed);
+            speed = Mathf.Clamp01(speed);
+
+            _animatorComponent.SetFloat(Constants.SpeedAnimatorParam, speed);
         }
     }
 }
