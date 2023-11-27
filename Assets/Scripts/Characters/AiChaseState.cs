@@ -4,7 +4,7 @@ namespace Assets.Scripts.Characters
     {
         public override void EnterState(EnemyController enemy)
         {
-            enemy.Movement.UpdateAgentSpeed(enemy.Stats.RunSpeed);
+            enemy.Movement.UpdateAgentSpeed(enemy.Stats.RunSpeed, false);
         }
 
         public override void UpdateState(EnemyController enemy)

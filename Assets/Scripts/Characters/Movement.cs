@@ -18,6 +18,7 @@ namespace Assets.Scripts.Characters
         private NavMeshAgent _agent;
         private Vector3 _movementVector;
         private Animator _animatorComponent;
+        private bool _clampAnimatorSpeedAgain = true;
 
         public void HandleMove(InputAction.CallbackContext context)
         {
@@ -68,9 +69,10 @@ namespace Assets.Scripts.Characters
             IsMoving = true;
         }
 
-        public void UpdateAgentSpeed(float newSpeed)
+        public void UpdateAgentSpeed(float newSpeed, bool shouldClampSpeed)
         {
             _agent.speed = newSpeed;
+            _clampAnimatorSpeedAgain = shouldClampSpeed;
         }
 
         public void Rotate(Vector3 newForwardVector)
@@ -136,6 +138,11 @@ namespace Assets.Scripts.Characters
             }
 
             speed = Mathf.Clamp01(speed);
+
+            if(CompareTag(Constants.EnemyTag) && _clampAnimatorSpeedAgain)
+            {
+                 speed = Mathf.Clamp(speed, 0f, 0.5f);
+            }
 
             _animatorComponent.SetFloat(Constants.SpeedAnimatorParam, speed);
         }

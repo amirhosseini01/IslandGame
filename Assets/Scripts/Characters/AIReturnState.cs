@@ -8,7 +8,7 @@ namespace Assets.Scripts.Characters
         private Vector3 _targetPosition;
         public override void EnterState(EnemyController enemy)
         {
-            enemy.Movement.UpdateAgentSpeed(enemy.Stats.WalkSpeed);
+            enemy.Movement.UpdateAgentSpeed(enemy.Stats.WalkSpeed, true);
 
             if (enemy.Patrol is null)
             {
