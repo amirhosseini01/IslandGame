@@ -8,10 +8,11 @@ public class Combat : MonoBehaviour
     [NonSerialized]
     public float Damage = 0f;
     private Animator _animatorComponent;
+    private BubbleEvent _bubbleEventComponent;
 
     public void HandleAttack(InputAction.CallbackContext context)
     {
-        if(!context.performed)
+        if (!context.performed)
         {
             return;
         }
@@ -19,15 +20,32 @@ public class Combat : MonoBehaviour
         StartAttack();
     }
 
-    private void Awake() 
+    private void Awake()
     {
         _animatorComponent = GetComponentInChildren<Animator>();
+        _bubbleEventComponent = GetComponentInChildren<BubbleEvent>();
     }
 
-    private void StartAttack() 
+    private void OnEnable()
+    {
+        _bubbleEventComponent.OnBubbleStartAttack += HandleBubbleStartAttack;
+        _bubbleEventComponent.OnBubbleCompleteAttack += HandleBubbleCompleteAttack;
+    }
+
+    private void StartAttack()
     {
         _animatorComponent.SetFloat(Constants.SpeedAnimatorParam, 0);
         _animatorComponent.SetTrigger(Constants.AttackAnimatorParam);
+
+    }
+
+    private void HandleBubbleStartAttack()
+    {
+
+    }
+
+    private void HandleBubbleCompleteAttack()
+    {
 
     }
 }
