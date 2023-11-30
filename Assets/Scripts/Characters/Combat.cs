@@ -44,7 +44,7 @@ public class Combat : MonoBehaviour
         _bubbleEventComponent.OnBubbleHit -= HandleBubbleHit;
     }
 
-    private void StartAttack()
+    public void StartAttack()
     {
         if (IsAttacking)
         {

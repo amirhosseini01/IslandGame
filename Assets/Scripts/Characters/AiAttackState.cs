@@ -13,6 +13,8 @@ namespace Assets.Scripts.Characters
                 enemy.SwitchStates(enemy.ChaseState);
                 return;
             }
+
+            enemy.CombatComponent.StartAttack();
         }
     }
 }
