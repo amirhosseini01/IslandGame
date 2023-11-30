@@ -60,8 +60,11 @@ namespace Assets.Scripts.Characters
             IsMoving = true;
         }
 
-        public void StopMovingAgent() =>
+        public void StopMovingAgent()
+        {
             _agent.ResetPath();
+            IsMoving = false;
+        }
 
         public void MoveAgentByOffset(Vector3 offset)
         {
