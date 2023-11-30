@@ -93,7 +93,7 @@ public class Combat : MonoBehaviour
                 return;
             }
 
-            // healthComponent.TakeDamage(Damage);
+            healthComponent.TakeDamage(Damage);
         }
     }
 }
