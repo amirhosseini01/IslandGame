@@ -24,6 +24,11 @@ public class Combat : MonoBehaviour
         StartAttack();
     }
 
+    public void CancelAttack()
+    {
+        _animatorComponent.ResetTrigger(Constants.AttackAnimatorParam);
+    }
+
     private void Awake()
     {
         _animatorComponent = GetComponentInChildren<Animator>();

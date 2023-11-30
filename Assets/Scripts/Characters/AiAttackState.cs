@@ -10,11 +10,13 @@ namespace Assets.Scripts.Characters
         {
             if (enemy.DistanceFromPlayer > enemy.AttackRange)
             {
+                enemy.CombatComponent.CancelAttack();
                 enemy.SwitchStates(enemy.ChaseState);
                 return;
             }
 
             enemy.CombatComponent.StartAttack();
+            enemy.transform.LookAt(enemy.Player.transform);
         }
     }
 }
