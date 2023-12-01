@@ -8,6 +8,7 @@ namespace Assets.Scripts.Utilities
         public event UnityAction OnBubbleStartAttack = () => { };
         public event UnityAction OnBubbleCompleteAttack = () => { };
         public event UnityAction OnBubbleHit = () => { };
+        public event UnityAction OnBubbleCompleteDefeat = () => { };
         private void OnStartAttack()
         {
             OnBubbleStartAttack.Invoke();
@@ -21,6 +22,11 @@ namespace Assets.Scripts.Utilities
         private void OnHit()
         {
             OnBubbleHit.Invoke();
+        }
+
+        private void OnCompleteDefeat()
+        {
+            OnBubbleCompleteDefeat.Invoke();
         }
     }
 }

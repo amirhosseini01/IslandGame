@@ -9,6 +9,11 @@ namespace Assets.Scripts.Characters
 
         public override void UpdateState(EnemyController enemy)
         {
+            if(enemy.Player == null)
+            {
+                return;
+            }
+
             if(enemy.DistanceFromPlayer > enemy.ChaseRange)
             {
                 enemy.SwitchStates(enemy.ReturnState);

@@ -1,6 +1,6 @@
 namespace Assets.Scripts.Characters
 {
-	public class AiAttackState : AiBaseState
+    public class AiAttackState : AiBaseState
     {
         public override void EnterState(EnemyController enemy)
         {
@@ -8,6 +8,11 @@ namespace Assets.Scripts.Characters
         }
         public override void UpdateState(EnemyController enemy)
         {
+            if (enemy.Player == null)
+            {
+                enemy.CombatComponent.CancelAttack();
+                return;
+            }
             if (enemy.DistanceFromPlayer > enemy.AttackRange)
             {
                 enemy.CombatComponent.CancelAttack();
