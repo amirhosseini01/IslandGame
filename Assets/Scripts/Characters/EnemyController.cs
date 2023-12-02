@@ -35,6 +35,9 @@ namespace Assets.Scripts.Characters
 
         [NonSerialized]
         public AiPatrolState PatrolState = new AiPatrolState();
+        
+        [NonSerialized]
+        public AiDefeatedState DefeatedState = new AiDefeatedState();
 
         public CharacterStatsScriptableObj Stats;
         
@@ -60,6 +63,16 @@ namespace Assets.Scripts.Characters
             _healthComponent = GetComponent<Health>();
 
             OriginalPosition = transform.position;
+        }
+
+        private void OnEnable()
+        {
+            _healthComponent.OnStartDefeated += HandleStartDefeated;
+        }
+
+        private void OnDisable()
+        {
+            _healthComponent.OnStartDefeated -= HandleStartDefeated;
         }
 
         private void Start()
@@ -97,6 +110,12 @@ namespace Assets.Scripts.Characters
                 transform.position,
                 ChaseRange
             );
+        }
+
+        private void HandleStartDefeated()
+        {
+            SwitchStates(DefeatedState);
+            _currentState.EnterState(this);
         }
     }
 }

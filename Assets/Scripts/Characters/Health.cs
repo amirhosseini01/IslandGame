@@ -1,9 +1,11 @@
 using System;
 using Assets.Scripts.Utilities;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    public UnityAction OnStartDefeated = () => {};
     [NonSerialized]
     public float HealthPoints = 0f;
     private Animator _animatorComponent;
@@ -26,6 +28,11 @@ public class Health : MonoBehaviour
         if (_isDefeated)
         {
             return;
+        }
+
+        if(CompareTag(Constants.EnemyTag))
+        {
+            OnStartDefeated.Invoke();
         }
 
         _isDefeated = true;
