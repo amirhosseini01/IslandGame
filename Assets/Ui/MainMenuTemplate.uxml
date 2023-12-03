@@ -1,5 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; height: 527px; width: 1612px; background-color: rgba(243, 229, 215, 0); border-left-color: rgba(60, 147, 180, 0); border-right-color: rgba(60, 147, 180, 0); border-top-color: rgba(60, 147, 180, 0); border-bottom-color: rgba(60, 147, 180, 0); border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
-        <ui:Label tabindex="-1" text="Bruno&apos;s island Adventure" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: italic; font-size: 80px; color: rgb(255, 255, 255); -unity-text-align: upper-center; height: 121px; width: 1785px; white-space: normal; -unity-text-outline-width: 2px; -unity-text-outline-color: rgba(0, 0, 0, 0);" />
+    <Style src="project://database/Assets/Ui/GlobalStyleSheet.uss?fileID=7433441132597879392&amp;guid=80f5eebf6972db8419df3fc1819b2429&amp;type=3#GlobalStyleSheet" />
+    <ui:VisualElement class="center" style="flex-grow: 1;">
+        <ui:VisualElement name="VisualElement" class="primary-container base-text center" style="background-color: rgba(243, 229, 215, 0); width: auto; height: auto; align-items: center; justify-content: center;">
+            <ui:Label tabindex="-1" text="Bruno&apos;s island Adventure" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="base-text" style="font-size: 80px; -unity-text-align: upper-center; -unity-text-outline-width: 2px; background-color: rgba(0, 0, 0, 0); -unity-background-image-tint-color: rgb(255, 255, 255); color: rgb(0, 0, 0); height: auto; width: auto;" />
+            <ui:Button text="Start Game" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 329px; font-size: 50px; background-color: rgb(0, 141, 255); border-top-left-radius: 25px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; border-bottom-left-radius: 25px;" />
+            <ui:VisualElement name="button_container" />
+            <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Game%20Assets/Sprites/Bombs.png?fileID=2800000&amp;guid=4420e8d6e00706f4f84dad51b2169cb1&amp;type=3#Bombs&apos;); width: 150px; height: 150px; max-height: 150px; position: absolute; top: 150px;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
