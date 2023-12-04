@@ -1,0 +1,33 @@
+.primary-container {
+    flex-grow: 1;
+    height: 527px;
+    width: 1812px;
+    background-color: rgba(243, 229, 215, 0);
+    border-left-color: rgba(60, 147, 180, 0);
+    border-right-color: rgba(60, 147, 180, 0);
+    border-top-color: rgba(60, 147, 180, 0);
+    border-bottom-color: rgba(60, 147, 180, 0);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.base-text {
+    -unity-font-style: italic;
+    color: rgb(255, 255, 255);
+    height: 121px;
+    width: 1717px;
+    white-space: normal;
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    -unity-font-definition: initial;
+    -unity-font: url('project://database/Assets/Game%20Assets/Fonts/OdibeeSans-Regular.ttf?fileID=12800000&guid=94c91e133c0f88c438ef55128a1cd703&type=3#OdibeeSans-Regular');
+}
+
+.center {
+    flex-grow: 1;
+}
