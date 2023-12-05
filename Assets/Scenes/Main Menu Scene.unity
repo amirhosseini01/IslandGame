@@ -389,6 +389,34 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[7].m_ActionName
       value: UI/UnPause[/Keyboard/escape]
       objectReference: {fileID: 0}
+    - target: {fileID: 2154868688765623790, guid: 12d768ae77879ff469c4e700fd514826, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154868688765623790, guid: 12d768ae77879ff469c4e700fd514826, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154868688765623790, guid: 12d768ae77879ff469c4e700fd514826, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1864656231}
+    - target: {fileID: 2154868688765623790, guid: 12d768ae77879ff469c4e700fd514826, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154868688765623790, guid: 12d768ae77879ff469c4e700fd514826, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154868688765623790, guid: 12d768ae77879ff469c4e700fd514826, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.Ui.UiController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154868688765623790, guid: 12d768ae77879ff469c4e700fd514826, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7000275151713831316, guid: 12d768ae77879ff469c4e700fd514826, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -448,6 +476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1864656230}
   - component: {fileID: 1864656229}
+  - component: {fileID: 1864656231}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -486,6 +515,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1864656231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864656228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2958d28347ea5e34bb1d7fa0832bb2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentSelection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
