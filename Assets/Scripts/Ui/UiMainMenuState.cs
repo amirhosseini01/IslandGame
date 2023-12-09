@@ -1,3 +1,6 @@
+using Assets.Scripts.Core;
+using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UIElements;
 
 namespace Assets.Scripts.Ui
@@ -11,10 +14,21 @@ namespace Assets.Scripts.Ui
 		public override void EnterState()
 		{
 			UiController.Buttons = UiController.Root.Query<Button>(null, "menu-button").ToList();
+			UiController.Buttons[0].RemoveFromClassList("bg-sky-blue");
+			UiController.Buttons[0].AddToClassList("active");
 		}
 		public override void SelectButton()
 		{
-			// var btn = UiController.Buttons[UiController.CurrentSelection];
+			Debug.Log("testw");
+			var btn = UiController.Buttons[UiController.CurrentSelection];
+			foreach(var item in UiController.Buttons)
+			{
+				Debug.Log(item.name);
+			}
+			if(btn.name == "start-button")
+			{
+				SceneTransition.Initiate(1);
+			}
 		}
 	}
 }

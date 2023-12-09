@@ -22,8 +22,26 @@ namespace Assets.Scripts.Ui
             {
                 return;
             }
-
             CurrentState.SelectButton();
+        }
+
+        public void HandleNavigate(InputAction.CallbackContext context)
+        {
+            if(!context.performed || Buttons.Count == 0)
+            {
+                return;
+            }
+
+            Buttons[CurrentSelection].RemoveFromClassList("active");
+            Buttons[CurrentSelection].AddToClassList("bg-sky-blue");
+
+            var input = context.ReadValue<Vector2>();
+            CurrentSelection += input.x > 0? 1: -1;
+            CurrentSelection = Mathf.Clamp(CurrentSelection, 0, Buttons.Count - 1);
+
+            Buttons[CurrentSelection].AddToClassList("active");
+            Buttons[CurrentSelection].RemoveFromClassList("bg-sky-blue");
+            Debug.Log("test");
         }
 
         private void Awake()
