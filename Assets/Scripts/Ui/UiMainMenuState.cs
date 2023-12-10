@@ -19,12 +19,7 @@ namespace Assets.Scripts.Ui
 		}
 		public override void SelectButton()
 		{
-			Debug.Log("testw");
 			var btn = UiController.Buttons[UiController.CurrentSelection];
-			foreach(var item in UiController.Buttons)
-			{
-				Debug.Log(item.name);
-			}
 			if(btn.name == "start-button")
 			{
 				SceneTransition.Initiate(1);

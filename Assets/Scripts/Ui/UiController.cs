@@ -41,7 +41,6 @@ namespace Assets.Scripts.Ui
 
             Buttons[CurrentSelection].AddToClassList("active");
             Buttons[CurrentSelection].RemoveFromClassList("bg-sky-blue");
-            Debug.Log("test");
         }
 
         private void Awake()
