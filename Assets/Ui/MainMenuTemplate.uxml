@@ -1,22 +1,22 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Ui/GlobalStyleSheet.uss?fileID=7433441132597879392&amp;guid=80f5eebf6972db8419df3fc1819b2429&amp;type=3#GlobalStyleSheet" />
     <ui:VisualElement class="center" style="flex-grow: 1;">
-        <ui:VisualElement name="VisualElement" class="primary-container base-text center" style="background-color: rgba(243, 229, 215, 0); width: auto; height: auto; align-items: center; justify-content: center; left: auto;">
+        <ui:VisualElement name="main-menu-element" class="primary-container base-text center" style="background-color: rgba(243, 229, 215, 0); width: auto; height: auto; align-items: center; justify-content: center; left: auto; display: none;">
             <ui:Label tabindex="-1" text="Bruno&apos;s island Adventure" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="base-text" style="font-size: 80px; -unity-text-align: upper-center; -unity-text-outline-width: 2px; background-color: rgba(0, 0, 0, 0); -unity-background-image-tint-color: rgb(255, 255, 255); color: rgb(0, 0, 0); height: auto; width: auto; left: auto;" />
             <ui:VisualElement name="button_container" style="right: 20px;">
                 <ui:Button text="Start Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="start-button" class="menu-button bg-sky-blue" style="width: 329px; font-size: 50px; border-top-left-radius: 25px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; border-bottom-left-radius: 25px; right: 138px;" />
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Game%20Assets/Sprites/Bombs.png?fileID=2800000&amp;guid=4420e8d6e00706f4f84dad51b2169cb1&amp;type=3#Bombs&apos;); width: 150px; height: 150px; max-height: 150px; position: absolute; top: 150px;" />
         </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement name="player-info-container" style="left: 5%; top: 5%; position: absolute; flex-direction: row; align-items: stretch; justify-content: flex-start; align-self: auto; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
-        <ui:VisualElement class="start-container" style="flex-grow: 1; position: relative;">
-            <ui:Label tabindex="-1" text="Health" parse-escape-sequences="true" display-tooltip-when-elided="true" class="start-name" />
-            <ui:Label tabindex="-1" text="000" parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/Game%20Assets/Fonts/OdibeeSans-Regular.ttf?fileID=12800000&amp;guid=94c91e133c0f88c438ef55128a1cd703&amp;type=3#OdibeeSans-Regular&apos;); padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
-        </ui:VisualElement>
-        <ui:VisualElement class="start-container" style="flex-grow: 1; margin-right: 0; left: 5%; padding-right: 0; position: relative; margin-left: 10px;">
-            <ui:Label tabindex="-1" text="Potions" parse-escape-sequences="true" display-tooltip-when-elided="true" class="start-name" />
-            <ui:Label tabindex="-1" text="000" parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/Game%20Assets/Fonts/OdibeeSans-Regular.ttf?fileID=12800000&amp;guid=94c91e133c0f88c438ef55128a1cd703&amp;type=3#OdibeeSans-Regular&apos;); padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+        <ui:VisualElement name="player-info-container" style="left: 5%; top: 5%; position: absolute; flex-direction: row; align-items: stretch; justify-content: flex-start; align-self: auto; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; display: none;">
+            <ui:VisualElement class="start-container" style="flex-grow: 1; position: relative;">
+                <ui:Label tabindex="-1" text="Health" parse-escape-sequences="true" display-tooltip-when-elided="true" class="start-name" />
+                <ui:Label tabindex="-1" text="000" parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/Game%20Assets/Fonts/OdibeeSans-Regular.ttf?fileID=12800000&amp;guid=94c91e133c0f88c438ef55128a1cd703&amp;type=3#OdibeeSans-Regular&apos;); padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+            </ui:VisualElement>
+            <ui:VisualElement class="start-container" style="flex-grow: 1; margin-right: 0; left: 5%; padding-right: 0; position: relative; margin-left: 10px;">
+                <ui:Label tabindex="-1" text="Potions" parse-escape-sequences="true" display-tooltip-when-elided="true" class="start-name" />
+                <ui:Label tabindex="-1" text="000" parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/Game%20Assets/Fonts/OdibeeSans-Regular.ttf?fileID=12800000&amp;guid=94c91e133c0f88c438ef55128a1cd703&amp;type=3#OdibeeSans-Regular&apos;); padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

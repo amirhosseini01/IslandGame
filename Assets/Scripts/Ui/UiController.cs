@@ -1,17 +1,19 @@
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace Assets.Scripts.Ui
 {
-    public class UiController : MonoBehaviour
+	public class UiController : MonoBehaviour
     {
         public UiBaseState CurrentState;
         public UiMainMenuState UiMainMenuState;
         public List<Button> Buttons;
         public VisualElement Root;
+        public VisualElement MainMenuContainer;
+        public VisualElement PlayerInfoContainer;
         public int CurrentSelection = 0;
 
         private UIDocument _uiDocumentComponent;
@@ -27,6 +29,7 @@ namespace Assets.Scripts.Ui
 
         public void HandleNavigate(InputAction.CallbackContext context)
         {
+            
             if(!context.performed || Buttons.Count == 0)
             {
                 return;
@@ -47,13 +50,25 @@ namespace Assets.Scripts.Ui
         {
             UiMainMenuState = new(this);
 
-            _uiDocumentComponent = GetComponent<UIDocument>();
+            _uiDocumentComponent = this.GetComponent<UIDocument>();
             Root = _uiDocumentComponent.rootVisualElement;
+
+            MainMenuContainer = Root.Q<VisualElement>("main-menu-element");
+            PlayerInfoContainer = Root.Q<VisualElement>("player-info-container");
         }
         private void Start()
         {
-            CurrentState = UiMainMenuState;
-            CurrentState.EnterState();
+            var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            if(sceneIndex == 0)
+            {
+                CurrentState = UiMainMenuState;
+                CurrentState.EnterState();
+            }
+            else
+            {
+                PlayerInfoContainer.style.display = DisplayStyle.Flex;
+            }
         }
     }
 
