@@ -1,3 +1,4 @@
+using Assets.Scripts.Core;
 using UnityEngine;
 
 namespace Assets.Scripts.Characters
@@ -12,11 +13,13 @@ namespace Assets.Scripts.Characters
         {
             _healthComponent.HealthPoints = Stats.Health;
             _combatComponent.Damage = Stats.Damage;
+
+            EventManager.RaiseChangePlayerHealth(_healthComponent.HealthPoints);
         }
         private void Awake()
         {
-            _combatComponent = GetComponent<Combat>();
-            _healthComponent = GetComponent<Health>();
+            _combatComponent = this.GetComponent<Combat>();
+            _healthComponent = this.GetComponent<Health>();
         }
     }
 }

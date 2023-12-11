@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Assets.Scripts.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -6,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Assets.Scripts.Ui
 {
-	public class UiController : MonoBehaviour
+    public class UiController : MonoBehaviour
     {
         public UiBaseState CurrentState;
         public UiMainMenuState UiMainMenuState;
@@ -15,12 +16,13 @@ namespace Assets.Scripts.Ui
         public VisualElement MainMenuContainer;
         public VisualElement PlayerInfoContainer;
         public int CurrentSelection = 0;
+        public Label HealthLabel;
 
         private UIDocument _uiDocumentComponent;
 
         public void HandleInteract(InputAction.CallbackContext context)
         {
-            if(!context.performed)
+            if (!context.performed)
             {
                 return;
             }
@@ -29,8 +31,8 @@ namespace Assets.Scripts.Ui
 
         public void HandleNavigate(InputAction.CallbackContext context)
         {
-            
-            if(!context.performed || Buttons.Count == 0)
+
+            if (!context.performed || Buttons.Count == 0)
             {
                 return;
             }
@@ -39,7 +41,7 @@ namespace Assets.Scripts.Ui
             Buttons[CurrentSelection].AddToClassList("bg-sky-blue");
 
             var input = context.ReadValue<Vector2>();
-            CurrentSelection += input.x > 0? 1: -1;
+            CurrentSelection += input.x > 0 ? 1 : -1;
             CurrentSelection = Mathf.Clamp(CurrentSelection, 0, Buttons.Count - 1);
 
             Buttons[CurrentSelection].AddToClassList("active");
@@ -55,12 +57,14 @@ namespace Assets.Scripts.Ui
 
             MainMenuContainer = Root.Q<VisualElement>("main-menu-element");
             PlayerInfoContainer = Root.Q<VisualElement>("player-info-container");
+            HealthLabel = Root.Q<Label>("health-label");
+            Debug.Log("from me: " + HealthLabel == null);
         }
         private void Start()
         {
             var sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-            if(sceneIndex == 0)
+            if (sceneIndex == 0)
             {
                 CurrentState = UiMainMenuState;
                 CurrentState.EnterState();
@@ -70,6 +74,21 @@ namespace Assets.Scripts.Ui
                 PlayerInfoContainer.style.display = DisplayStyle.Flex;
             }
         }
-    }
 
+        private void OnEnable() =>
+            EventManager.OnChangePlayerHealth += this.HandleChangePlayerHealth;
+
+        private void OnDisable() =>
+            EventManager.OnChangePlayerHealth -= this.HandleChangePlayerHealth;
+
+        private void HandleChangePlayerHealth(float newHealthPoints)
+        {
+            if (HealthLabel != null)
+            {
+                HealthLabel.text = newHealthPoints.ToString();
+            }
+
+        }
+
+    }
 }
