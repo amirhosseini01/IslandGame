@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class Health : MonoBehaviour
 {
-    public UnityAction OnStartDefeated = () => {};
+    public UnityAction OnStartDefeated = () => { };
     [NonSerialized]
     public float HealthPoints = 0f;
     [SerializeField]
@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
     {
         HealthPoints = Mathf.Max(HealthPoints - damageAmount, 0);
 
-        if(this.CompareTag(Constants.PlayerTag))
+        if (this.CompareTag(Constants.PlayerTag))
         {
             EventManager.RaiseChangePlayerHealth(HealthPoints);
         }
@@ -35,18 +35,18 @@ public class Health : MonoBehaviour
 
     public void HandleHeal(InputAction.CallbackContext context)
     {
-        if(!context.performed || _potionCount == 0)
+        if (!context.performed || _potionCount == 0)
         {
             return;
         }
 
-        _potionCount --;
+        _potionCount--;
         HealthPoints += _healthAmount;
 
         EventManager.RaiseChangePlayerHealth(HealthPoints);
-
+        EventManager.RaiseChangePlayerPotions(_potionCount);
     }
-    
+
     private void Awake()
     {
         if (_isDefeated)
@@ -54,7 +54,7 @@ public class Health : MonoBehaviour
             return;
         }
 
-        if(this.CompareTag(Constants.EnemyTag))
+        if (this.CompareTag(Constants.EnemyTag))
         {
             OnStartDefeated.Invoke();
         }
@@ -64,14 +64,22 @@ public class Health : MonoBehaviour
         _bubbleEventComponent = this.GetComponentInChildren<BubbleEvent>();
     }
 
+    private void Start()
+    {
+        if (this.CompareTag(Constants.PlayerTag))
+        {
+            EventManager.RaiseChangePlayerPotions(_potionCount);
+        }
+    }
+
     private void OnEnable() =>
         _bubbleEventComponent.OnBubbleCompleteDefeat += this.HandleBubbleCompleteDefeat;
 
-    private void OnDisable() => 
+    private void OnDisable() =>
         _bubbleEventComponent.OnBubbleCompleteDefeat -= this.HandleBubbleCompleteDefeat;
 
     private void Defeated() => _animatorComponent.SetTrigger(Constants.DefeatedAnimatorParam);
 
-    private void HandleBubbleCompleteDefeat() => 
+    private void HandleBubbleCompleteDefeat() =>
         Destroy(this.gameObject);
 }

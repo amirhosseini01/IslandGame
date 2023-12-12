@@ -104,7 +104,6 @@ namespace Assets.Scripts.Characters
         {
             _agent = GetComponent<NavMeshAgent>();
             _animatorComponent = GetComponentInChildren<Animator>();
-            print(_animatorComponent is null);
 
             OriginalForwardVector = transform.forward;
         }

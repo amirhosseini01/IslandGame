@@ -17,6 +17,7 @@ namespace Assets.Scripts.Ui
         public VisualElement PlayerInfoContainer;
         public int CurrentSelection = 0;
         public Label HealthLabel;
+        public Label PotionsLabel;
 
         private UIDocument _uiDocumentComponent;
 
@@ -58,7 +59,7 @@ namespace Assets.Scripts.Ui
             MainMenuContainer = Root.Q<VisualElement>("main-menu-element");
             PlayerInfoContainer = Root.Q<VisualElement>("player-info-container");
             HealthLabel = Root.Q<Label>("health-label");
-            Debug.Log("from me: " + HealthLabel == null);
+            PotionsLabel = Root.Q<Label>("potion-label");
         }
         private void Start()
         {
@@ -75,19 +76,25 @@ namespace Assets.Scripts.Ui
             }
         }
 
-        private void OnEnable() =>
+        private void OnEnable()
+        {
             EventManager.OnChangePlayerHealth += this.HandleChangePlayerHealth;
+            EventManager.OnChangePlayerPotions += this.HandleChangePlayerPotions;
+        }
 
-        private void OnDisable() =>
+        private void OnDisable()
+        {
             EventManager.OnChangePlayerHealth -= this.HandleChangePlayerHealth;
+            EventManager.OnChangePlayerPotions -= this.HandleChangePlayerPotions;
+        }
 
         private void HandleChangePlayerHealth(float newHealthPoints)
         {
-            if (HealthLabel != null)
-            {
-                HealthLabel.text = newHealthPoints.ToString();
-            }
-
+            HealthLabel.text = newHealthPoints.ToString();
+        }
+        private void HandleChangePlayerPotions(float newHealthPotions)
+        {
+            PotionsLabel.text = newHealthPotions.ToString();
         }
 
     }
