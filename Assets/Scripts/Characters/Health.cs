@@ -4,12 +4,15 @@ using Assets.Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public UnityAction OnStartDefeated = () => { };
     [NonSerialized]
     public float HealthPoints = 0f;
+    public Slider SliderComponent;
+
     [SerializeField]
     private int _potionCount = 1;
     [SerializeField]
@@ -25,6 +28,11 @@ public class Health : MonoBehaviour
         if (this.CompareTag(Constants.PlayerTag))
         {
             EventManager.RaiseChangePlayerHealth(HealthPoints);
+        }
+
+        if(SliderComponent is not null)
+        {
+            SliderComponent.value = HealthPoints;
         }
 
         if (HealthPoints == 0)
@@ -62,6 +70,7 @@ public class Health : MonoBehaviour
         _isDefeated = true;
         _animatorComponent = this.GetComponentInChildren<Animator>();
         _bubbleEventComponent = this.GetComponentInChildren<BubbleEvent>();
+        SliderComponent = this.GetComponentInChildren<Slider>();
     }
 
     private void Start()

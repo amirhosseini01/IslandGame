@@ -81,6 +81,12 @@ namespace Assets.Scripts.Characters
 
             _healthComponent.HealthPoints = Stats.Health;
             CombatComponent.Damage = Stats.Damage;
+
+            if(_healthComponent.SliderComponent is not null)
+            {
+                _healthComponent.SliderComponent.maxValue = Stats.Health;
+                _healthComponent.SliderComponent.value = Stats.Health;
+            }
         }
 
         private void Update()
