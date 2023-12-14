@@ -377,6 +377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Stationary Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 5920244284469214931, guid: a46c637a6d904944989883d8bb9ebfcf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.929
+      objectReference: {fileID: 0}
     - target: {fileID: 6326109324584106868, guid: a46c637a6d904944989883d8bb9ebfcf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -415,6 +419,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6326109324584106868, guid: a46c637a6d904944989883d8bb9ebfcf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7362363919750505642, guid: a46c637a6d904944989883d8bb9ebfcf, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8141645575358444071, guid: a46c637a6d904944989883d8bb9ebfcf, type: 3}

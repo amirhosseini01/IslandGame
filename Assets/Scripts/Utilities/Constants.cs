@@ -10,6 +10,7 @@ namespace Assets.Scripts.Utilities
         public const string AttackAnimatorParam = "Attack";
         public const string DefeatedAnimatorParam = "Defeated";
         public const string IsShakingAnimatorParam = "IsShaking";
+        public const string MainCameraTag = "MainCamera";
 
     }
 }

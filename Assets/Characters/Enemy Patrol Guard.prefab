@@ -377,6 +377,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Patrol Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 5920244284469214931, guid: a46c637a6d904944989883d8bb9ebfcf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5920244284469214931, guid: a46c637a6d904944989883d8bb9ebfcf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.729
+      objectReference: {fileID: 0}
     - target: {fileID: 6326109324584106868, guid: a46c637a6d904944989883d8bb9ebfcf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
