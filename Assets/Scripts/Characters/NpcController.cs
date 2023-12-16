@@ -5,6 +5,7 @@ namespace Assets.Scripts.Characters
 {
     public class NpcController : MonoBehaviour
     {
+        private TextAsset _inkJson;
         private Canvas _canvasComponent;
 
         public void HandleInteract(InputAction.CallbackContext context)
@@ -14,6 +15,10 @@ namespace Assets.Scripts.Characters
                 return;
             }
 
+            if(_inkJson is null)
+            {
+                return;
+            }
             
         }
 

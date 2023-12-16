@@ -2,7 +2,7 @@
     flex-grow: 1;
     height: 527px;
     width: 1812px;
-    background-color: rgba(243, 229, 215, 0);
+    background-color: rgb(243, 229, 215);
     border-left-color: rgba(60, 147, 180, 0);
     border-right-color: rgba(60, 147, 180, 0);
     border-top-color: rgba(60, 147, 180, 0);

@@ -18,5 +18,15 @@
                 <ui:Label tabindex="-1" text="000" parse-escape-sequences="true" display-tooltip-when-elided="true" name="potion-label" style="background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/Game%20Assets/Fonts/OdibeeSans-Regular.ttf?fileID=12800000&amp;guid=94c91e133c0f88c438ef55128a1cd703&amp;type=3#OdibeeSans-Regular&apos;); padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="dialogue-container" style="flex-grow: 1; left: 0; bottom: 0; width: 100px; padding-top: 60px; padding-right: 60px; padding-bottom: 60px; padding-left: 60px; position: absolute; display: none;">
+            <ui:VisualElement class="primary-contianer" style="flex-grow: 1;">
+                <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="dialogue-text" class="base-text" style="font-size: 32px;" />
+                <ui:Button text="Next" parse-escape-sequences="true" display-tooltip-when-elided="true" name="dialogue-next-button" class="menu-bottun bg-sky-blue" style="position: absolute; left: auto; right: 50px; bottom: -40px; display: none;" />
+                <ui:VisualElement name="choices-group" style="flex-grow: 1; position: absolute; right: 50px; bottom: -40px; flex-direction: row; display: none;">
+                    <ui:Button text="Yes" parse-escape-sequences="true" display-tooltip-when-elided="true" name="yes-button" class="bg-sky-blue" />
+                    <ui:Button text="No" parse-escape-sequences="true" display-tooltip-when-elided="true" name="no-button" class="bg-sky-blue" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
