@@ -1,3 +1,4 @@
+using Assets.Scripts.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,21 +6,23 @@ namespace Assets.Scripts.Characters
 {
     public class NpcController : MonoBehaviour
     {
-        private TextAsset _inkJson;
+        public TextAsset InkJson;
         private Canvas _canvasComponent;
 
-        public void HandleInteract(InputAction.CallbackContext context)
+		public void HandleInteract(InputAction.CallbackContext context)
         {
             if(!context.performed || !_canvasComponent.enabled)
             {
                 return;
             }
 
-            if(_inkJson is null)
+            if(InkJson is null)
             {
+                Debug.LogWarning("enter the ink json file");
                 return;
             }
             
+            EventManager.RaiseInitiateDialogue(InkJson);
         }
 
         private void Awake() => _canvasComponent = this.GetComponentInChildren<Canvas>();

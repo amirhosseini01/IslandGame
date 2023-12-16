@@ -11,6 +11,7 @@ namespace Assets.Scripts.Ui
     {
         public UiBaseState CurrentState;
         public UiMainMenuState UiMainMenuState;
+        public UIDialogueState UIDialogueState;
         public List<Button> Buttons;
         public VisualElement Root;
         public VisualElement MainMenuContainer;
@@ -52,6 +53,7 @@ namespace Assets.Scripts.Ui
         private void Awake()
         {
             UiMainMenuState = new(this);
+            UIDialogueState = new(this);
 
             _uiDocumentComponent = this.GetComponent<UIDocument>();
             Root = _uiDocumentComponent.rootVisualElement;
@@ -80,12 +82,14 @@ namespace Assets.Scripts.Ui
         {
             EventManager.OnChangePlayerHealth += this.HandleChangePlayerHealth;
             EventManager.OnChangePlayerPotions += this.HandleChangePlayerPotions;
+            EventManager.OnInitiateDialogue += this.HandleInitiateDialogue;
         }
 
         private void OnDisable()
         {
             EventManager.OnChangePlayerHealth -= this.HandleChangePlayerHealth;
             EventManager.OnChangePlayerPotions -= this.HandleChangePlayerPotions;
+            EventManager.OnInitiateDialogue -= this.HandleInitiateDialogue;
         }
 
         private void HandleChangePlayerHealth(float newHealthPoints)
@@ -96,6 +100,10 @@ namespace Assets.Scripts.Ui
         {
             PotionsLabel.text = newHealthPotions.ToString();
         }
-
+        private void HandleInitiateDialogue(TextAsset inkJson)
+        {
+            CurrentState = UIDialogueState; 
+            CurrentState.EnterState(); 
+        }
     }
 }
